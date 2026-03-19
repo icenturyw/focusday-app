@@ -7,6 +7,7 @@ node_modules/
 .expo/
 dist/
 web-build/
+docs-preview/
 expo-env.d.ts
 
 # Native
@@ -28,6 +29,7 @@ yarn-error.*
 
 # editor
 .vscode/
+.screenshot-server.pid
 
 # macOS
 .DS_Store

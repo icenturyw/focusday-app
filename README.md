@@ -1,18 +1,29 @@
 # FocusDay
 
+[中文说明](./README.zh-CN.md)
+
 FocusDay is a local-first Pomodoro productivity app built with Expo and React Native.
-It combines daily task planning, task-bound focus sessions, completion review, achievements, and date-range task scheduling in a single mobile experience.
+It combines daily task planning, task-bound focus sessions, review analytics, achievements, and date-range task scheduling in a single mobile experience.
+
+## Screenshots
+
+<p align="center">
+  <img src="./assets/screenshots/home.png" alt="FocusDay home screen" width="220" />
+  <img src="./assets/screenshots/focus.png" alt="FocusDay focus screen" width="220" />
+  <img src="./assets/screenshots/stats.png" alt="FocusDay stats screen" width="220" />
+  <img src="./assets/screenshots/profile.png" alt="FocusDay profile screen" width="220" />
+</p>
 
 ## Highlights
 
 - Task-driven Pomodoro workflow instead of a standalone timer
-- Daily task board with priority, notes, deadlines, and drag sorting
+- Daily task board with priority, notes, deadlines, drag sorting, and quick focus start
 - Date-range task creation to avoid manually re-adding the same task every day
 - Recurring series editing and deletion with `single`, `future`, and `all` scopes
 - Focus, short break, and long break cycles with customizable durations
 - Local notifications for session completion, including lock-screen reminders
 - Daily, weekly, and monthly statistics
-- Achievement system with unlock progress and milestones
+- Achievement milestones with unlock progress and prompts
 - Local-first persistence powered by AsyncStorage
 
 ## Product Scope
@@ -51,7 +62,8 @@ constants/     Theme and constants
 context/       App state and business logic
 types/         Shared TypeScript types
 utils/         Date, stats, achievements, notifications
-assets/        App icons and static assets
+scripts/       Local documentation utilities
+assets/        App icons, screenshots, and static assets
 ```
 
 ## Getting Started
