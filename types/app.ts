@@ -70,7 +70,7 @@ export type ActiveTimer = {
   elapsedBeforePauseSeconds: number;
   startedAt: string;
   isRunning: boolean;
-  notificationId?: string | null;
+  notificationIds?: string[] | null;
 };
 
 export type CompletionPrompt = {
