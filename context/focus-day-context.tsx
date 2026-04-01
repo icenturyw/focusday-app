@@ -279,19 +279,19 @@ export function AppProvider({ children }: PropsWithChildren) {
     }
 
     const taskTitle = tasksRef.current.find((task) => task.id === timer.taskId)?.title ?? '当前任务';
-    const notificationId = await scheduleTimerCompletionNotification({
+    const notificationIds = await scheduleTimerCompletionNotification({
       taskTitle,
       phase: timer.phase,
       seconds: Math.max(timer.plannedDurationSeconds - getElapsedSeconds(timer), 1),
       vibrationEnabled: settingsRef.current.vibrationEnabled,
     });
 
-    if (!notificationId) {
+    if (!notificationIds) {
       return;
     }
 
     setActiveTimer((current) =>
-      current?.id === timer.id ? { ...current, notificationId } : current
+      current?.id === timer.id ? { ...current, notificationIds } : current
     );
   }
 
@@ -313,14 +313,14 @@ export function AppProvider({ children }: PropsWithChildren) {
       elapsedBeforePauseSeconds: 0,
       startedAt: new Date().toISOString(),
       isRunning: true,
-      notificationId: null,
+      notificationIds: null,
     };
     setActiveTimer(nextTimer);
     void syncTimerNotification(nextTimer);
   }
 
   function clearActiveTimer() {
-    void cancelTimerCompletionNotification(activeTimerRef.current?.notificationId);
+    void cancelTimerCompletionNotification(activeTimerRef.current?.notificationIds);
     setActiveTimer(null);
   }
 
@@ -348,7 +348,7 @@ export function AppProvider({ children }: PropsWithChildren) {
       return;
     }
 
-    void cancelTimerCompletionNotification(timer.notificationId);
+    void cancelTimerCompletionNotification(timer.notificationIds);
     const endedAt = new Date().toISOString();
     persistSession(timer, 'completed', timer.plannedDurationSeconds, endedAt);
 
@@ -557,14 +557,14 @@ export function AppProvider({ children }: PropsWithChildren) {
   }
 
   function pauseTimer() {
-    void cancelTimerCompletionNotification(activeTimerRef.current?.notificationId);
+    void cancelTimerCompletionNotification(activeTimerRef.current?.notificationIds);
     setActiveTimer((current) =>
       current
         ? {
             ...current,
             elapsedBeforePauseSeconds: getElapsedSeconds(current),
             isRunning: false,
-            notificationId: null,
+            notificationIds: null,
           }
         : current
     );
@@ -580,7 +580,7 @@ export function AppProvider({ children }: PropsWithChildren) {
       ...timer,
       startedAt: new Date().toISOString(),
       isRunning: true,
-      notificationId: null,
+      notificationIds: null,
     };
     setActiveTimer(resumedTimer);
     void syncTimerNotification(resumedTimer);
